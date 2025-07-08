@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Unit Converter</title>
+		<link rel="stylesheet" href="/stylesheet.css">
+	</head>
+	<body>
+		<div class="border">
+			<h2>Unit Converter</h2>
+			<form id="unitConverterForm" class="grid-container" method="post" action="/" target="_self" th:object="${converter}">
+				<!-- Selection of measurement units-->
+				<div class="grid-item">
+					<input type="radio" id="unitMenu_length" name="unitMenu" value="unit_length" checked>
+					<label for="unitMenu_length">Length</label>
+				</div>
+				<div class="grid-item">
+					<input type="radio" id="unitMenu_weight" name="unitMenu" value="unit_weight">
+					<label for="unitMenu_weight">Weight</label>
+				</div>
+				<div class="grid-item">
+					<input type="radio" id="unitMenu_temperature" name="unitMenu" value="unitMenu_temperature">
+					<label for="unitMenu_temperature">Temperature</label>
+				</div>
+
+				<!-- TODO: Implement switch between measuring units -->
+				<!-- Length converter -->
+				<div class="grid-item" style="grid-column: 1">
+					<label for="initialValue">Enter the length to convert: </label>
+				</div>
+				<div class="grid-item" style="grid-column: 2">
+					<input type="number" id="initialValue" name="initialValue" min="0" th:value="*{initialValue}" required>
+				</div>
+
+				<div class="grid-item" style="grid-column: 1">
+					<label for="initialUnit">Unit to convert from:  </label>
+				</div>
+				<div class="grid-item" style="grid-column: 2">
+					<select id="initialUnit" name="initialUnit" form="unitConverterForm" th:field="*{initialUnit}" >
+						<option th:each="unit: ${measurementUnits}"
+								th:value="${unit}"
+								th:text="${unit.text}">
+						</option>
+					</select>
+				</div>
+
+				<div class="grid-item" style="grid-column: 1">
+					<label for="targetUnit">Unit to convert to:  </label>
+				</div>
+				<div class="grid-item" style="grid-column: 2">
+					<select id="targetUnit" name="targetUnit" form="unitConverterForm" th:field="*{targetUnit}" >
+						<option th:each="unit: ${measurementUnits}"
+								th:value="${unit}"
+								th:text="${unit.text}">
+						</option>
+					</select>
+				</div>
+
+				<!-- Weight calculator -->
+				<!-- TODO: Implement -->
+
+				<!-- Temperature calculator -->
+				<!-- TODO: Implement -->
+
+				<div class="grid-item" style="grid-column: 2">
+					<input type="submit" value="Convert">
+				</div>
+			</form>
+			<br>
+
+			<!-- Result -->
+			<div class="grid-container" th:if="${converter.targetValue != null}">
+				<div class="grid-item" style="grid-column: 1; grid-row: 1">
+					<span>Result of your calculation:</span>
+				</div>
+				<div class="grid-item" style="grid-column: 2; grid-row: 1">
+					<span th:text="${converter.targetValue}"></span>
+					<span th:text="${converter.targetUnit.abbr}"></span>
+				</div>
+
+				<!-- TODO: Implement Reset Button -->
+				<div class="grid-item" style="grid-column: 2; grid-row: 2">
+					<button id="resetButton" name="resetButton" value="reset">Reset</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
