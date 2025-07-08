@@ -8,7 +8,7 @@
 	<body>
 		<div class="border">
 			<h2>Unit Converter</h2>
-			<form id="unitConverterForm" class="grid-container" method="post" action="/" target="_self" th:object="${converter}">
+			<form id="unitConverterForm" class="grid-container" method="post" action="/" target="_self" th:object="${converter}" th:if="${converter.targetValue == null}">
 				<!-- Selection of measurement units-->
 				<div class="grid-item">
 					<input type="radio" id="unitMenu_length" name="unitMenu" value="unit_length" checked>
@@ -69,7 +69,7 @@
 			<br>
 
 			<!-- Result -->
-			<div class="grid-container" th:if="${converter.targetValue != null}">
+			<div class="grid-container" th:unless="${converter.targetValue == null}">
 				<div class="grid-item" style="grid-column: 1; grid-row: 1">
 					<span>Result of your calculation:</span>
 				</div>
@@ -78,9 +78,10 @@
 					<span th:text="${converter.targetUnit.abbr}"></span>
 				</div>
 
-				<!-- TODO: Implement Reset Button -->
 				<div class="grid-item" style="grid-column: 2; grid-row: 2">
-					<button id="resetButton" name="resetButton" value="reset">Reset</button>
+					<a href="/">
+						<button id="resetButton" name="resetButton">Reset</button>
+					</a>
 				</div>
 			</div>
 		</div>
