@@ -1,6 +1,8 @@
 package moritz.schmoetzer.UnitConverter.enums;
 
-public enum Units {
+import moritz.schmoetzer.UnitConverter.interfaces.Unit;
+
+public enum LengthUnits implements Unit {
     // Meter is the base value
     // Metric
     KILOMETER("km", "km (kilometer)", 1000),
@@ -30,7 +32,7 @@ public enum Units {
         return this.value;
     }
 
-    private Units(String abbr, String text, double value){
+    private LengthUnits(String abbr, String text, double value){
         this.abbr = abbr;
         this.text = text;
         this.value = value;

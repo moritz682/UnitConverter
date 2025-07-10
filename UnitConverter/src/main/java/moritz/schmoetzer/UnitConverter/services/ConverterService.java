@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ConverterService {
+    // TODO: Implement converter-logic for temperatures
     public double convertUnits(Converter converter){
         double initialValue = converter.getInitialValue();
         double initialUnit = converter.getInitialUnit().getValue();

@@ -1,25 +1,36 @@
 package moritz.schmoetzer.UnitConverter.models;
 
-import moritz.schmoetzer.UnitConverter.enums.Units;
+import moritz.schmoetzer.UnitConverter.enums.Quantity;
+import moritz.schmoetzer.UnitConverter.interfaces.Unit;
 
 public class Converter {
-    private Units initialUnit;
-    private Units targetUnit;
+    private Quantity quantity;
+    private Unit initialUnit;
+    private Unit targetUnit;
     private Double initialValue;
     private Double targetValue;
 
-    public Converter(Units initialUnit, Units targetUnit, Double initialValue, Double targetValue) {
+    public Converter(Quantity quantity, Unit initialUnit, Unit targetUnit, Double initialValue, Double targetValue) {
+        this.quantity = quantity;
         this.initialUnit = initialUnit;
         this.targetUnit = targetUnit;
         this.initialValue = initialValue;
         this.targetValue = targetValue;
     }
 
-    public Units getInitialUnit() {
+    public Quantity getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Quantity quantity) {
+        this.quantity = quantity;
+    }
+
+    public Unit getInitialUnit() {
         return initialUnit;
     }
 
-    public void setInitialUnit(Units initialUnit) {
+    public void setInitialUnit(Unit initialUnit) {
         this.initialUnit = initialUnit;
     }
 
@@ -31,11 +42,11 @@ public class Converter {
         this.initialValue = initialValue;
     }
 
-    public Units getTargetUnit() {
+    public Unit getTargetUnit() {
         return targetUnit;
     }
 
-    public void setTargetUnit(Units targetUnit) {
+    public void setTargetUnit(Unit targetUnit) {
         this.targetUnit = targetUnit;
     }
 
