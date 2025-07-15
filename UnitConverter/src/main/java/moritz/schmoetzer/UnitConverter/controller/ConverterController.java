@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ConverterController {
@@ -22,13 +23,28 @@ public class ConverterController {
         this.converterService = converterService;
     }
 
-    // TODO: Add mode, where selected units don't get reset, when pressing the reset button
-
     @GetMapping("/")
-    public String getUnitConverter(Model model){
-        // TODO: Fix pre-selection of initial- and target-unit
-        Converter converter = new Converter(Quantity.TEMPERATURE, TemperatureUnits.CELSIUS, TemperatureUnits.KELVIN, null, null);
-        model.addAttribute("converter", converter);
+    public String getUnitConverter(@RequestParam(required = false) String quantity, Model model){
+        Converter converter;
+
+        switch ((quantity != null ? quantity : "length")){
+            case "length":
+                converter = new Converter(Quantity.LENGTH, LengthUnits.METER, LengthUnits.KILOMETER, null, null);
+                break;
+            case "weight":
+                converter = new Converter(Quantity.WEIGHT, WeightUnits.GRAM, WeightUnits.KILOGRAM, null, null);
+                break;
+            case "temperature":
+                converter = new Converter(Quantity.TEMPERATURE, TemperatureUnits.CELSIUS, TemperatureUnits.FAHRENHEIT, null, null);
+                break;
+            default:
+                converter = new Converter(Quantity.LENGTH, LengthUnits.METER, LengthUnits.METER, null, null);
+                break;
+        }
+
+        // TODO: Fix reset button --> display selected quantity and units when resetting
+
+        model.addAttribute(converter);
         model.addAttribute("measurementUnits", getUnitsForQuantity(converter.getQuantity()));
 
         return "unitConverter.html";

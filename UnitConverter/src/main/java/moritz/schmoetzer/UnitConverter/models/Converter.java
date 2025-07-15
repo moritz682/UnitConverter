@@ -57,4 +57,15 @@ public class Converter {
     public void setTargetValue(Double targetValue) {
         this.targetValue = targetValue;
     }
+
+    @Override
+    public String toString() {
+        return "Converter{" +
+                "quantity=" + quantity +
+                ", initialUnit=" + initialUnit +
+                ", targetUnit=" + targetUnit +
+                ", initialValue=" + initialValue +
+                ", targetValue=" + targetValue +
+                '}';
+    }
 }
