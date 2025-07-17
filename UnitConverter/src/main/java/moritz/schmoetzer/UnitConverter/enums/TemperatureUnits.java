@@ -5,7 +5,6 @@ import moritz.schmoetzer.UnitConverter.interfaces.Unit;
 public enum TemperatureUnits implements Unit {
     // Celsius is the base value
     // Metric
-    // TODO: Implement converter-logic for temperatures
     CELSIUS("°C", "°C (Celsius)", 1),
     KELVIN("K", "K (Kelvin)", 1),
 
