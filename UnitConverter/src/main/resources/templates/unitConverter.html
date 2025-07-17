@@ -104,9 +104,9 @@
 				</div>
 
 				<div class="grid-item" style="grid-column: 2; grid-row: 2">
-					<a href="/">
-						<button id="resetButton" name="resetButton">Reset</button>
-					</a>
+					<form method="get" action="/" target="_self" th:object="${converter}">
+						<input type="submit" value="Reset">
+					</form>
 				</div>
 			</div>
 		</div>
